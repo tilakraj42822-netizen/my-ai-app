@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://tools.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    tools:context=".MainActivity">
+
+    <!-- Top Toolbar Header -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/purple_500"
+        android:elevation="6dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MemeVerse Generator"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Main Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/layout_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layout_main_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Input Box Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E0E0E0">
+
+                <LinearLayout
+                    android:id="@+id/layout_input_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_input_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Choose Your Topic"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Topic Text Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_topic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="e.g. Mondays, AI coding, Coffee dependency"
+                        android:layout_marginBottom="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_topic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="@color/text_primary" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Tone Preference / Category Spinner -->
+                    <TextView
+                        android:id="@+id/tv_category_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Humor Category"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="?android:attr/spinnerItemBackground"
+                        android:spinnerMode="dropdown"
+                        android:layout_marginBottom="4dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Buttons Grid Section (3 Buttons required) -->
+            <LinearLayout
+                android:id="@+id/layout_buttons_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                android:weightSum="3">
+
+                <!-- Generate Meme Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_generate_meme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Meme"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/purple_500"
+                    android:textColor="@color/white"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.MaterialComponents.Button" />
+
+                <!-- Generate Reel Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_generate_reel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reel"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:textColor="@color/white"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.MaterialComponents.Button" />
+
+                <!-- History Toggle Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_view_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="History"
+                    android:layout_marginStart="4dp"
+                    android:backgroundTint="@color/black"
+                    android:textColor="@color/white"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.MaterialComponents.Button" />
+            </LinearLayout>
+
+            <!-- Interactive Results Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_result_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#CCCCCC">
+
+                <LinearLayout
+                    android:id="@+id/layout_result_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_result_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ready to Create Magic!"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Visual Meme Preview Frame -->
+                    <RelativeLayout
+                        android:id="@+id/layout_meme_preview"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:background="#222222"
+                        android:visibility="gone"
+                        android:layout_marginBottom="16dp"
+                        android:padding="12dp">
+
+                        <!-- Top Meme Text -->
+                        <TextView
+                            android:id="@+id/tv_meme_top"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:text="WHEN THE CODE FINALLY COMPILES"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:shadowColor="#000000"
+                            android:shadowRadius="3.0"
+                            android:shadowDx="2"
+                            android:shadowDy="2" />
+
+                        <!-- Humorous graphic placeholder or visual representation -->
+                        <TextView
+                            android:id="@+id/tv_meme_graphic_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="😎 (GENIUS WORK)"
+                            android:textColor="@color/accent_gold"
+                            android:textSize="32sp" />
+
+                        <!-- Bottom Meme Text -->
+                        <TextView
+                            android:id="@+id/tv_meme_bottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="BUT THE ENTIRE APPLET IS BLANK"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:shadowColor="#000000"
+                            android:shadowRadius="3.0"
+                            android:shadowDx="2"
+                            android:shadowDy="2" />
+                    </RelativeLayout>
+
+                    <!-- Text-Based Result Box (for scripts / values) -->
+                    <LinearLayout
+                        android:id="@+id/layout_text_result_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_text_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Enter a topic in the inputs above and tap either 'Meme' or 'Reel' to instantly generate high-viral scripts and punchy formatting!"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="4dp" />
+                    </LinearLayout>
+
+                    <!-- Result Action Row -->
+                    <LinearLayout
+                        android:id="@+id/layout_result_actions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="end"
+                        android:layout_marginTop="16dp"
+                        android:visibility="gone">
+
+                        <!-- Copy Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_copy_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Copy"
+                            android:layout_marginEnd="8dp"
+                            android:backgroundTint="@color/purple_500"
+                            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+                        <!-- Share Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_share_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Share"
+                            android:backgroundTint="@color/teal_700"
+                            style="@style/Widget.MaterialComponents.Button.TextButton" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- History Section (Hidden by default, toggled via button) -->
+            <LinearLayout
+                android:id="@+id/layout_history_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/layout_history_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_history_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saved Creation History"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <!-- Clear all history button -->
+                    <TextView
+                        android:id="@+id/btn_clear_history"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clear All"
+                        android:textColor="#D63031"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:padding="6dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <!-- Container layout for adding dynamic creation items -->
+                <LinearLayout
+                    android:id="@+id/layout_history_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <!-- Empty State Message -->
+                <TextView
+                    android:id="@+id/tv_history_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No history saved yet! Generate content and save them to view them here."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

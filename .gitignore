@@ -1,8 +1,21 @@
-node_modules/
+# Built artifacts
 build/
-dist/
-coverage/
+.gradle/
+local.properties
+*.apk
+*.aar
+*.ap_
+*.keystore
+
+# IDE and system files
+.idea/
+*.iml
 .DS_Store
 *.log
+captures/
+.externalNativeBuild
+.cxx
+
+# Secrets / Configuration
 .env*
 !.env.example
