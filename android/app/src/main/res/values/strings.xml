@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MemeVerse</string>
+    <string name="title_activity_main">MemeVerse</string>
+    <string name="package_name">com.memeverse.app</string>
+    <string name="custom_url_scheme">com.memeverse.app</string>
+</resources>

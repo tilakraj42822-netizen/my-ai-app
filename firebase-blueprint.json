@@ -1,0 +1,193 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account and profile details",
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Unique identifier of the user (lowercase, alphanumeric)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Friendly display name"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "URL to the user avatar image"
+        },
+        "bio": {
+          "type": "string",
+          "description": "Short user bio statement"
+        },
+        "followers": {
+          "type": "integer",
+          "description": "Total followers count"
+        },
+        "following": {
+          "type": "integer",
+          "description": "Total following count"
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "Whether user's chef status is verified"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when this profile was setup"
+        }
+      },
+      "required": ["username", "name", "avatar", "bio", "followers", "following", "verified"]
+    },
+    "Meme": {
+      "title": "Meme",
+      "description": "A single meme item (video or image feed element)",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["image", "video"]
+        },
+        "src": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "topText": {
+          "type": "string"
+        },
+        "bottomText": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "commentsCount": {
+          "type": "integer"
+        },
+        "creator": {
+          "type": "object",
+          "description": "Inline snapshot of the creator profile for prompt loading"
+        },
+        "audioTrack": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array"
+        },
+        "isAd": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "type", "src", "caption", "likes", "commentsCount", "creator", "audioTrack", "tags"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A reply or feedback text on a meme",
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["username", "avatar", "text", "timestamp"]
+    },
+    "Like": {
+      "title": "Like",
+      "description": "A register indicating user likes a meme",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId"]
+    },
+    "Save": {
+      "title": "Save",
+      "description": "A bookmark registry mapping memes of interest",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId"]
+    },
+    "Follow": {
+      "title": "Follow",
+      "description": "A follow state mapping a user's subscription to a creator",
+      "type": "object",
+      "properties": {
+        "followerId": {
+          "type": "string"
+        },
+        "creatorUsername": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["followerId", "creatorUsername"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Stores user profiles with unique user IDs"
+    },
+    "/memes/{memeId}": {
+      "schema": "Meme",
+      "description": "Primary repository of all funny images and video reels"
+    },
+    "/memes/{memeId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "List of comments on a specific meme item"
+    },
+    "/memes/{memeId}/likes/{likeId}": {
+      "schema": "Like",
+      "description": "List of users who liked this meme item"
+    },
+    "/users/{userId}/saves/{saveId}": {
+      "schema": "Save",
+      "description": "Memes bookmarked by a user"
+    },
+    "/users/{userId}/following/{followId}": {
+      "schema": "Follow",
+      "description": "Who this user is currently following"
+    }
+  }
+}

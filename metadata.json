@@ -1,0 +1,11 @@
+{
+  "name": "MemeVerse",
+  "description": "An infinite scroll feed of funny AI-generated memes and short videos. Styled in a sleek Android-inspired Material design with smooth animations, vertical swiping, and comments drawer.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
