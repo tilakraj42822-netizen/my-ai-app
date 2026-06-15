@@ -110,7 +110,6 @@
                         android:id="@+id/spinner_category"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:background="?android:attr/spinnerItemBackground"
                         android:spinnerMode="dropdown"
                         android:layout_marginBottom="4dp" />
 
